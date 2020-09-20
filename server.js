@@ -15,14 +15,14 @@ var connection = mysql.createConnection({
     host: "localhost",
 
     // Your port; if not 3306
-    port: 8080,
+    port: 3306,
 
     // Your username
     user: "root",
 
     // Your password
     password: "root",
-    database: "ice_creamDB"
+    database: "employee_trackerDB"
 });
 
 mainMenu();
@@ -74,10 +74,6 @@ function viewAll() {
     })
 };
 
-app.listen(PORT, function () {
-    console.log('listening on port ' + PORT);
-});
-
 // function buildTeam() {
 //     inquirer
 //     .prompt([
@@ -99,3 +95,7 @@ app.listen(PORT, function () {
 //         };
 //     });
 // };
+
+app.listen(PORT, function () {
+    console.log('listening on port ' + PORT);
+});
