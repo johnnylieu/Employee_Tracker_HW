@@ -32,12 +32,16 @@ function mainMenu() {
         .prompt([{
             type: 'list',
             name: 'listOfOptions',
-            choices: ['View All Employees', 'Create New Employee', 'Create Department', 'Create Role', 'Update Employee Role'],
+            choices: ['View All Employees', "View Departments", "View Roles", 'Create New Employee', 'Create Department', 'Create Role', 'Update Employee Role'],
             message: 'What would you like to do?'
         }, ])
         .then(function (answers) {
             if (answers.listOfOptions === 'View All Employees') {
                 viewAll();
+            } else if (answers.listOfOptions === 'View Departments') {
+                viewDepartments();
+            } else if (answers.listOfOptions === 'View Roles') {
+                viewRoles();
             } else if (answers.listOfOptions === 'Create New Employee') {
                 createEmployee();
             } else if (answers.listOfOptions === 'Create Department') {
@@ -46,36 +50,36 @@ function mainMenu() {
                 createRole();
             } else if (answers.listOfOptions === 'Update Employee Role') {
                 updateEmployeeRole();
-            } else {
-
+            } else { 
+                connection.end();
             };
         })
 };
+
+// function viewAll() {
+//     inquirer
+//         .prompt([{
+//             type: 'list',
+//             name: 'viewEmployees',
+//             choices: ['View View Employees By Department', 'View All Employees By Manager', 'View All Employees By Job Title', 'View All Employees'],
+//             message: 'What would you like to do?'
+//         }])
+//         .then(function (answers) {
+//             if (answers.viewEmployees === 'View View Employees By Department') {
+//                 viewByDepartment();
+//             } else if (answers.viewEmployees === 'View All Employees By Manager') {
+//                 viewByManager();
+//             } else if (answers.viewEmployees === 'View All Employees By Role') {
+//                 viewByRole();
+//             } else if (answers.viewEmployees === 'View All Employees') {
+//                 viewAllEmployees();
+//             } else {
+
+//             };
+//         })
+// };
 
 function viewAll() {
-    inquirer
-        .prompt([{
-            type: 'list',
-            name: 'viewEmployees',
-            choices: ['View View Employees By Department', 'View All Employees By Manager', 'View All Employees By Job Title', 'View All Employees'],
-            message: 'What would you like to do?'
-        }])
-        .then(function (answers) {
-            if (answers.viewEmployees === 'View View Employees By Department') {
-                viewByDepartment();
-            } else if (answers.viewEmployees === 'View All Employees By Manager') {
-                viewByManager();
-            } else if (answers.viewEmployees === 'View All Employees By Role') {
-                viewByRole();
-            } else if (answers.viewEmployees === 'View All Employees') {
-                viewAllEmployees();
-            } else {
-
-            };
-        })
-};
-
-function viewAllEmployees() {
     console.log("Loading employees...\n");
     connection.query("SELECT * FROM employee", function (err, res) {
         if (err) throw err;
@@ -85,9 +89,19 @@ function viewAllEmployees() {
     });
 };
 
-function viewByDepartment() {
-    console.log("Loading employees...\n");
-    connection.query("SELECT * FROM department WHERE ", function (err, res) {
+function viewDepartments() {
+    console.log("Loading departments...\n");
+    connection.query("SELECT * FROM department", function (err, res) {
+        if (err) throw err;
+        // Log all results of the SELECT statement
+        console.table(res);
+        mainMenu();
+    });
+};
+
+function viewRoles() {
+    console.log("Loading roles...\n");
+    connection.query("SELECT * FROM role", function (err, res) {
         if (err) throw err;
         // Log all results of the SELECT statement
         console.table(res);
