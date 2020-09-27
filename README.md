@@ -13,7 +13,7 @@
 # Installation
 
 * Download my files in its entirety.
-* Create new MySQL connection with the name of root and password of root.
+* Create new MySQL connection with the name of LocalHost (case sensitive), username of root and password of root.
 * Use the employeetracker.sql file to create a new schema and tables on MySQL.
 * Use see.sql to populate said tables.
 * Using your terminal, navigate to the folder on your desktop.
