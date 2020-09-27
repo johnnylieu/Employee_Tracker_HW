@@ -56,29 +56,6 @@ function mainMenu() {
         })
 };
 
-// function viewAll() {
-//     inquirer
-//         .prompt([{
-//             type: 'list',
-//             name: 'viewEmployees',
-//             choices: ['View View Employees By Department', 'View All Employees By Manager', 'View All Employees By Job Title', 'View All Employees'],
-//             message: 'What would you like to do?'
-//         }])
-//         .then(function (answers) {
-//             if (answers.viewEmployees === 'View View Employees By Department') {
-//                 viewByDepartment();
-//             } else if (answers.viewEmployees === 'View All Employees By Manager') {
-//                 viewByManager();
-//             } else if (answers.viewEmployees === 'View All Employees By Role') {
-//                 viewByRole();
-//             } else if (answers.viewEmployees === 'View All Employees') {
-//                 viewAllEmployees();
-//             } else {
-
-//             };
-//         })
-// };
-
 function viewAll() {
     console.log("Loading employees...\n");
     connection.query("SELECT * FROM employee", function (err, res) {
@@ -263,67 +240,6 @@ function createRole() {
             );
         });
 };
-
-
-
-
-
-
-// function viewAllEmployees() {
-//     console.log("Loading employees...\n");
-//     connection.query("DELETE from employee WHERE ?",
-//      [answers.]
-//, function (err, res) {
-//         if (err) throw err;
-//         // Log all results of the SELECT statement
-//         console.table(res);
-//     });
-// };
-
-
-// function viewAllEmployees() {
-//     console.log("Loading employees...\n");
-//     connection.query("UPDATE from employee WHERE ?",
-//      [answers.]
-//, function (err, res) {
-//         if (err) throw err;
-//         // Log all results of the SELECT statement
-//         console.table(res);
-//     });
-// };
-
-// INSERT into
-
-// function getAllEmployees(connection) {
-//     connection.query(
-//         "SELECT * FROM employee",
-//         function (error, response) {
-//             if (error) throw error;
-//             console.table(response);
-//         }).then(mainMenu());
-// }
-
-// function buildTeam() {
-//     inquirer
-//     .prompt([
-//         {
-//             type: 'list',
-//             name: 'buildTeam',
-//             choices: ['Build my team', 'Add another employee'],
-//             message: 'Would you like to build your team or add another employee?'
-//         },
-//     ])
-//     .then(function (answers) {
-//         if (answers.buildTeam === 'Build my team') {
-//             if (!fs.existsSync(OUTPUT_DIR)) {
-//                 fs.mkdirSync(OUTPUT_DIR);
-//             }
-//             fs.writeFileSync(outputPath, render(employees));
-//         } else {
-//             mainMenu();
-//         };
-//     });
-// };
 
 app.listen(PORT, function () {
     console.log('listening on port ' + PORT);
